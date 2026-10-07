@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Exchange Rate Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="dashboard-container">
+
+        <header class="dashboard-header">
+            <div>
+                <h1>Exchange Rate Generator</h1>
+                <p id="userEmail">Loading user...</p>
+            </div>
+
+            <button id="logoutButton">
+                Sign Out
+            </button>
+        </header>
+
+        <section class="dashboard-card">
+
+            <h2>Currency Data Generator</h2>
+
+            <p>
+                You are successfully authenticated.
+                The exchange-rate generator will be connected here next.
+            </p>
+
+            <div class="status-box">
+                <strong>Authentication Status:</strong>
+                <span id="authStatus">Checking...</span>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="auth.js"></script>
+
+</body>
+</html>
