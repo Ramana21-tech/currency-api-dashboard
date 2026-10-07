@@ -101,3 +101,62 @@ if (signupForm) {
         signupForm.reset();
     });
 }
+
+// ==========================================
+// PROTECTED DASHBOARD
+// ==========================================
+
+async function checkAuthentication() {
+
+    const { data, error } =
+        await supabaseClient.auth.getSession();
+
+    if (error || !data.session) {
+
+        // User is not logged in
+        if (window.location.pathname.endsWith("dashboard.html")) {
+            window.location.href = "login.html";
+        }
+
+        return;
+    }
+
+    // User is logged in
+    const user = data.session.user;
+
+    const userEmail =
+        document.getElementById("userEmail");
+
+    const authStatus =
+        document.getElementById("authStatus");
+
+    if (userEmail) {
+        userEmail.textContent = user.email;
+    }
+
+    if (authStatus) {
+        authStatus.textContent = "Authenticated ✓";
+    }
+}
+
+
+// ==========================================
+// LOGOUT
+// ==========================================
+
+const logoutButton =
+    document.getElementById("logoutButton");
+
+if (logoutButton) {
+
+    logoutButton.addEventListener("click", async () => {
+
+        await supabaseClient.auth.signOut();
+
+        window.location.href = "login.html";
+    });
+}
+
+
+// Run authentication check
+checkAuthentication();
